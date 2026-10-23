@@ -22,11 +22,18 @@ def show_menu():
     print("0 - Encerrar sistema")
 
 def abrir_novo_chamado():        
-    clear_screen()
-    print("=== NOVO CHAMADO ===\n")
+    while(1):
+        clear_screen()
+        print("=== NOVO CHAMADO ===\n")
 
-    id = max(chamados.keys()) + 1 if chamados else 1
-    titulo = input("Descreva o problema para o novo chamado: ")
+        id = max(chamados.keys()) + 1 if chamados else 1
+        titulo = input("Descreva o problema para o novo chamado: ")
+
+        if(titulo == ""):
+            print("Erro: titulo vazio. Tente novamente!")
+            input()
+            continue
+        break
 
     chamados[id] = {
         "titulo": titulo,
@@ -42,7 +49,6 @@ def main():
     while(1): 
         clear_screen()
         show_menu()
-
         try:
             opcao = int(input("\nEscolha uma opção: "))
         
