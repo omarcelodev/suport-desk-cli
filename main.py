@@ -45,6 +45,19 @@ def abrir_novo_chamado():
 
     fila_atendimento.append(id)
 
+def atender_proximo_chamado():
+    clear_screen()
+
+    if len(fila_atendimento) == 0:
+            print("A fila não possui nenhum chamado...")
+            return
+    id = fila_atendimento[0]
+
+    print(f"=== CHAMADO: #{id} - {chamados[id]['titulo']} ===\n")
+
+    print(f"✅ Chamado #{id} foi atendido com sucesso!")
+    fila_atendimento.popleft()
+
 def main(): 
     while(1): 
         clear_screen()
@@ -57,6 +70,9 @@ def main():
                 break
             elif opcao == 1:
                 abrir_novo_chamado()
+                input("Pressione Enter para voltar ao Menu...")
+            elif opcao == 2:
+                atender_proximo_chamado()
                 input("Pressione Enter para voltar ao Menu...")
             else:
                 print("Número fora do menu! Tente novamente...")
