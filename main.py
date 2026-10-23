@@ -1,3 +1,8 @@
+import os
+
+def clear_screen():
+    os.system('cls' if os.name == 'nt' else 'clear')
+
 def show_menu(): 
     print("==================================")
     print("    CENTRAL DE SUPORTE TÉCNICO")
@@ -14,6 +19,7 @@ def show_menu():
 
 def main(): 
     while(1): 
+        clear_screen()
         show_menu()
 
         try:
@@ -24,9 +30,9 @@ def main():
                 break
             elif opcao >= 1 and opcao <= 7:
                 print(f"Você escolheu a opção {opcao}.")
-                # Aqui entra a lógica dos chamados
             else:
                 print("Número fora do menu! Escolha entre 0 e 7.")
+                input("Pressione Enter para tentar novamente...")
         except ValueError:
              print("\nErro: Por favor, digite uma opção do menu!")
              input("Pressione Enter para tentar novamente...")
