@@ -1,4 +1,8 @@
 import os
+from collections import deque
+
+chamados = {}
+fila_atendimento = deque()
 
 def clear_screen():
     os.system('cls' if os.name == 'nt' else 'clear')
@@ -17,6 +21,23 @@ def show_menu():
     print("7 - Exibir estatísticas")
     print("0 - Encerrar sistema")
 
+def abrir_novo_chamado():        
+    clear_screen()
+    print("=== NOVO CHAMADO ===\n")
+
+    id = max(chamados.keys()) + 1 if chamados else 1
+    titulo = input("Descreva o problema para o novo chamado: ")
+
+    chamados[id] = {
+        "titulo": titulo,
+        "status": "Pendente"
+    }
+
+    print(f"\n✅ Chamado #{id} aberto com sucesso!")
+    print("Status: Pendente")
+
+    fila_atendimento.append(id)
+
 def main(): 
     while(1): 
         clear_screen()
@@ -28,10 +49,11 @@ def main():
             if opcao == 0:
                 print("Encerrando programa...")
                 break
-            elif opcao >= 1 and opcao <= 7:
-                print(f"Você escolheu a opção {opcao}.")
+            elif opcao == 1:
+                abrir_novo_chamado()
+                input("Pressione Enter para voltar ao Menu...")
             else:
-                print("Número fora do menu! Escolha entre 0 e 7.")
+                print("Número fora do menu! Tente novamente...")
                 input("Pressione Enter para tentar novamente...")
         except ValueError:
              print("\nErro: Por favor, digite uma opção do menu!")
