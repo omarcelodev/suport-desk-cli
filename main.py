@@ -3,7 +3,7 @@ from collections import deque
 
 chamados = {}
 fila_atendimento = deque()
-historico = []
+historico_atendimento = []
 
 def clear_screen():
     os.system('cls' if os.name == 'nt' else 'clear')
@@ -57,7 +57,7 @@ def atender_proximo_chamado():
     print(f"=== CHAMADO: #{id} - {chamados[id]['titulo']} ===\n")
 
     print(f"✅ Chamado #{id} foi atendido com sucesso!")
-    historico.append(id)
+    historico_atendimento.append(id)
     chamados[id]["status"] = "Atendido"
     fila_atendimento.popleft()
 
@@ -73,7 +73,9 @@ def consultar_cahamado_por_id():
                 print("\nErro: Digite um número inteiro e maior que 0!")
                 input("Pressione Enter para tentar novamente!")
             elif id in chamados:
-                print(chamados[id])
+                print(f"ID: #{id}")
+                print(f"Título: {chamados[id]["titulo"]}")
+                print(f"Status: {chamados[id]["status"]}\n")
                 return
             else:
                 print(f"\nNão foi encontrado nenhum chamdo com o ID #{id}")
@@ -82,6 +84,34 @@ def consultar_cahamado_por_id():
             print("\nErro: Por favor, digite uma opção númerica!")
             input("Pressione Enter para tentar novamente...")
 
+def desfazer_ultimo_atendimento():
+    while(1):
+        clear_screen()
+        print("=== DESFAZER ÚLTIMO ATENDIMENTO ===")
+        
+        if len(historico_atendimento) == 0:
+            print("Não há atendimentos realizados para desfazer!")
+            return
+        
+        id = historico_atendimento[-1]
+
+        print("O último atendimento realizado foi: ")
+        print(f"ID: #{id}")
+        print(f"Título: {chamados[id]["titulo"]}")
+        print(f"Status: {chamados[id]["status"]}\n")
+        opcao = input("Deseja desfazer? (s/n): ")
+
+        if opcao == "s":
+            chamados[id]["status"] = "Pendente"
+            fila_atendimento.appendleft(id)
+            historico_atendimento.pop()
+            print(f"✅ Atendimento #{id} desfeito com sucesso!")
+            return
+        elif opcao == "n":
+            return
+        else:
+            input("Por favor informe uma opção válida!")
+    
 def main(): 
     while(1): 
         clear_screen()
@@ -100,6 +130,9 @@ def main():
                 input("Pressione Enter para voltar ao Menu...")
             elif opcao == 3:
                 consultar_cahamado_por_id()
+                input("Pressione Enter para voltar ao Menu...")
+            elif opcao == 4:
+                desfazer_ultimo_atendimento()
                 input("Pressione Enter para voltar ao Menu...")
             else:
                 print("\nNúmero fora do menu! Tente novamente...")
