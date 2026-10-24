@@ -3,6 +3,7 @@ from collections import deque
 
 chamados = {}
 fila_atendimento = deque()
+historico = []
 
 def clear_screen():
     os.system('cls' if os.name == 'nt' else 'clear')
@@ -56,7 +57,30 @@ def atender_proximo_chamado():
     print(f"=== CHAMADO: #{id} - {chamados[id]['titulo']} ===\n")
 
     print(f"✅ Chamado #{id} foi atendido com sucesso!")
+    historico.append(id)
+    chamados[id]["status"] = "Atendido"
     fila_atendimento.popleft()
+
+def consultar_cahamado_por_id():
+    while(1):
+        clear_screen()
+        print("=== CONSULTAR CHAMDOS ===")
+
+        try:
+            id = int(input("Digite o ID do chamado: "))
+
+            if id < 1:
+                print("\nErro: Digite um número inteiro e maior que 0!")
+                input("Pressione Enter para tentar novamente!")
+            elif id in chamados:
+                print(chamados[id])
+                return
+            else:
+                print(f"\nNão foi encontrado nenhum chamdo com o ID #{id}")
+                return
+        except ValueError:
+            print("\nErro: Por favor, digite uma opção númerica!")
+            input("Pressione Enter para tentar novamente...")
 
 def main(): 
     while(1): 
@@ -74,8 +98,11 @@ def main():
             elif opcao == 2:
                 atender_proximo_chamado()
                 input("Pressione Enter para voltar ao Menu...")
+            elif opcao == 3:
+                consultar_cahamado_por_id()
+                input("Pressione Enter para voltar ao Menu...")
             else:
-                print("Número fora do menu! Tente novamente...")
+                print("\nNúmero fora do menu! Tente novamente...")
                 input("Pressione Enter para tentar novamente...")
         except ValueError:
              print("\nErro: Por favor, digite uma opção do menu!")
