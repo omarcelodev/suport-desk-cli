@@ -128,6 +128,15 @@ def listar_chamados_ordenados():
     print("=== CHAMADOS ===")
     print("__obs: a exibição da lista está ordenada em ordem alfabética crescente__\n")
 
+    chamados_ordenados = sorted(chamados.items(), key=lambda item: item[1]["titulo"])
+
+    for id_chamado, dados in chamados_ordenados:
+        titulo = dados["titulo"]
+        status = dados["status"]
+        print(f"ID: #{id_chamado}")
+        print(f"Título: {titulo}")
+        print(f"Status: {status}\n")
+        
 def exibir_estatisticas():
     clear_screen()
     print("=== ESTATÍSTICAS ===")
