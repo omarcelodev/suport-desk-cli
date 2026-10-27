@@ -123,6 +123,18 @@ def exibir_fila_atendimento():
             print(f"ID: #{id}")
             print(f"Título: {chamados[id]["titulo"]}\n")
 
+def listar_chamados_ordenados():
+    clear_screen()
+    print("=== CHAMADOS ===")
+    print("__obs: a exibição da lista está ordenada em ordem alfabética crescente__\n")
+
+def exibir_estatisticas():
+    clear_screen()
+    print("=== ESTATÍSTICAS ===")
+    print(f"Total chamados cadastrados: {len(chamados)}")
+    print(f"Total chamados pendentes: {len(fila_atendimento)}")
+    print(f"Total chamados atendidos: {len(historico_atendimento)}")
+
 def main(): 
     while(1): 
         clear_screen()
@@ -147,6 +159,12 @@ def main():
                 input("Pressione Enter para voltar ao Menu...")
             elif opcao == 5:
                 exibir_fila_atendimento()
+                input("Pressione Enter para voltar ao Menu...")
+            elif opcao == 6:
+                listar_chamados_ordenados()
+                input("Pressione Enter para voltar ao Menu...")
+            elif opcao == 7:
+                exibir_estatisticas()
                 input("Pressione Enter para voltar ao Menu...")
             else:
                 print("\nNúmero fora do menu! Tente novamente...")
