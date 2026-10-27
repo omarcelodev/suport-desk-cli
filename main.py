@@ -111,7 +111,18 @@ def desfazer_ultimo_atendimento():
             return
         else:
             input("Por favor informe uma opção válida!")
-    
+
+def exibir_fila_atendimento():
+    clear_screen()
+    print("=== FILA DE ATENDIMENTO ===")
+
+    if len(fila_atendimento) == 0:
+        print("Não existe atendimento na fila!")
+    else:
+        for id in fila_atendimento:
+            print(f"ID: #{id}")
+            print(f"Título: {chamados[id]["titulo"]}\n")
+
 def main(): 
     while(1): 
         clear_screen()
@@ -133,6 +144,9 @@ def main():
                 input("Pressione Enter para voltar ao Menu...")
             elif opcao == 4:
                 desfazer_ultimo_atendimento()
+                input("Pressione Enter para voltar ao Menu...")
+            elif opcao == 5:
+                exibir_fila_atendimento()
                 input("Pressione Enter para voltar ao Menu...")
             else:
                 print("\nNúmero fora do menu! Tente novamente...")
