@@ -1,7 +1,7 @@
 # Análise de Compelexidade
 
 **Qual é a complexidade de tempo esperada para localizar um chamado pelo ID utilizando a estrutura escolhida?**
-A complexidade é O(n). Porque o programa precisa percorrer as chaves do dicionário e verificar se corresponde com o ID selecionado pelo usuário. Caso ele não encontre ele vai precisar percorrer todo o dicionário, e nesse caso quanto mais elementos mais ele vai precisar percorrer.
+A complexidade é O(1). Porque python utiliza tabelas hash para localizar as chaves de um dicionario
 
 **Qual é a complexidade de tempo da operação utilizada para retirar o primeiro chamado da fila?**
 A compelexidade é O(1) utilizando popleft. Essa operação é adequadada porque remove o primeiro elemento de uma fila e possui métodos intenrnos para deslocar os outros elementos para novas posições, nesse caso(-1 a esquerda)

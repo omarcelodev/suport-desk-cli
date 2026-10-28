@@ -30,7 +30,7 @@ def abrir_novo_chamado():
         id = max(chamados.keys()) + 1 if chamados else 1
         titulo = input("Descreva o problema para o novo chamado: ")
 
-        if(titulo == ""):
+        if not titulo.strip():
             print("Erro: titulo vazio. Tente novamente!")
             input()
             continue
@@ -181,4 +181,6 @@ def main():
         except ValueError:
              print("\nErro: Por favor, digite uma opção do menu!")
              input("Pressione Enter para tentar novamente...")
-main()
+
+if __name__ == "__main__":
+    main()
