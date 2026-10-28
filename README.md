@@ -267,12 +267,8 @@ The project was developed individually to strengthen the foundational skills req
 
 ## Author
 
-**Marcelo Gomes de Freitas Filho**
+**Marcelo Gomes**
 
 Software Engineering Student
 
 [GitHub — @omarcelodev](https://github.com/omarcelodev)
-
----
-
-**Project Completed — Phase 0: Programming Fundamentals and Data Structures.**

@@ -1,3 +1,5 @@
+# Resultados dos Testes Manuais
+
 ## Teste 01 — Cadastro 
 
 1. Inicie o programa.
